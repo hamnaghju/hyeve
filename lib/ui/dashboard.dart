@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hyeve/pages/ai.dart';
-import 'package:hyeve/pages/favourite.dart';
-import 'package:hyeve/pages/profile.dart';
-import 'package:hyeve/pages/search.dart';
-import 'package:hyeve/constant/constant.dart';
+import 'package:hyeve/ui/ai.dart';
+import 'package:hyeve/ui/caretakerScreen.dart';
+import 'package:hyeve/ui/lodgeDetails.dart';
+import 'package:hyeve/ui/profile.dart';
+import 'package:hyeve/ui/reviewScreen.dart';
+import 'package:hyeve/ui/search.dart';
+import 'chatDetail.dart';
+import 'favourite.dart';
+
 
 class dashboard extends StatefulWidget {
   const dashboard({super.key});
@@ -19,34 +23,15 @@ class _dashboardState extends State<dashboard> {
   final List<Widget> _pages = [
     search(),
     Ai(),
-    favourite(),
-    profile(),
+    Favourite(),
+    Profile(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        leading:
-          IconButton(onPressed: () {},
-              icon: AppIcons(iconcolor: Colors.grey,
-                  iconsize: 24,
-                  iconimage: Icons.history)),
-        centerTitle: true,
-        title: Container(height: 26, width: 160, decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage("assets/img_1.png"))
-        ),),
-        actions: [
-          IconButton(onPressed: () {},
-              icon: AppIcons(iconcolor: Colors.grey,
-                  iconsize: 24,
-                  iconimage: Icons.add_box_outlined)),
-        ],
 
-
-      ),
       bottomNavigationBar: CustomBottomNavBar(selectedIndex:  _selectedIndex, onTap: (index) => setState(() => _selectedIndex = index),),
       body: Container(
         width: MediaQuery.of(context).size.width,

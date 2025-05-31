@@ -1,7 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 warningtext(String normaltext, Color textcolor){
   return  Text(normaltext, textAlign: TextAlign.center, style: GoogleFonts.manrope(
       textStyle: TextStyle(
@@ -13,7 +13,7 @@ warningtext(String normaltext, Color textcolor){
 headingtext(String normaltext, Color textcolor){
   return Text(normaltext, textAlign: TextAlign.center, style: GoogleFonts.dmSans(
       textStyle: TextStyle(
-          fontWeight: FontWeight.w700, fontSize: 39,letterSpacing: 0, color: textcolor,
+          fontWeight: FontWeight.w700, fontSize:35,letterSpacing: 0, color: textcolor,
       )
   ),);
 }

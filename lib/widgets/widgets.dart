@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hyeve/ui/chatDetail.dart';
+import 'package:hyeve/ui/chatlist.dart';
+
+import '../ui/caretakerScreen.dart';
 
 class ChatInputField extends StatelessWidget {
   final TextEditingController controller;
@@ -36,11 +42,72 @@ class ChatInputField extends StatelessWidget {
             ),
             IconButton(
               icon: Icon(Icons.send, color: Colors.white),
-              onPressed: onSend,
+              onPressed: () => Get.to(ChatDetailPage()),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+
+class BotTypingIndicator extends StatefulWidget {
+  const BotTypingIndicator({Key? key}) : super(key: key);
+
+  @override
+  State<BotTypingIndicator> createState() => _BotTypingIndicatorState();
+}
+
+class _BotTypingIndicatorState extends State<BotTypingIndicator>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _opacity;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    )..repeat(reverse: true);
+
+    _opacity = Tween(begin: 0.2, end: 1.0).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const CircleAvatar(
+          backgroundColor: Colors.transparent,
+          child: Icon(Icons.smart_toy, color: Colors.white),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: FadeTransition(
+            opacity: _opacity,
+            child: Container(
+              margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.grey[900],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Text(
+                "Searching...",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
